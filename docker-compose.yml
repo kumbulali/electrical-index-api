@@ -1,0 +1,14 @@
+version: '3'
+services:
+  db:
+    image: postgres
+    container_name: apollo-postgres-alikumbul
+    restart: always
+    environment:
+      POSTGRES_USER: apollouser
+      POSTGRES_PASSWORD: apollopass
+      POSTGRES_DB: apollodb
+    ports:
+      - 5432:5432
+    volumes:
+      - ./data:/var/lib/postgresql/data
