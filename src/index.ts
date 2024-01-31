@@ -1,6 +1,6 @@
 import app from './app';
-import config from './config/config';
-import dataSource from "./config/dataSource";
+import config from './config/default.variables.config';
+import dataSource from "./config/datasource.config";
 
 dataSource
   .initialize()
