@@ -3,6 +3,7 @@ import bodyParser from "body-parser";
 import helmet from "helmet";
 import cors from "cors";
 import "reflect-metadata";
+import authRoute from "./routes/auth.route";
 
 const app = express();
 
@@ -26,6 +27,8 @@ app.use((req, res, next) => {
 
   next();
 });
+
+app.use('/api/auth', authRoute);
 
 /** 404 Not Found */
 app.use((req, res, next) => {
