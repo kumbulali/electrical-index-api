@@ -10,9 +10,7 @@ const authValidation = {
         email: Joi.string().email().required(),
         password: Joi.string().required(),
         verifyPassword: Joi.ref('password'),
-        company: Joi.object({
-            id: Joi.number()
-        })
+        company: Joi.string().required()
     }),
 
     changePasswordValidationSchema: Joi.object({
