@@ -2,7 +2,6 @@ import authService from "../services/auth.service";
 import { Request, Response } from "express";
 import authValidation from "../validations/auth.validation";
 import jwtHelper from "../helpers/jwt.helper";
-import { JwtPayload } from "../interfaces/jwtPayload.interface";
 
 const authController = {
   register: async (req: Request, res: Response) => {

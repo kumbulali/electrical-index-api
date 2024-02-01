@@ -3,16 +3,14 @@ import dataSource from "../config/datasource.config";
 import jwtHelper from "../helpers/jwt.helper";
 import { User } from "../entities/user.entity";
 import { Company } from "../entities/company.entity";
-import { Session } from "../entities/session.entity";
 import { JwtPayload } from "../interfaces/jwtPayload.interface";
+import userRepo from "../repositories/user.repository";
+import sessionRepo from "../repositories/session.repository";
+import companyRepo from "../repositories/company.repository";
 
 const removeCredentials = (userObject: User) => {
   return _.omit(userObject, ["password", "salt", "deletedAt"]);
 };
-
-const userRepo = dataSource.getRepository(User),
-  sessionRepo = dataSource.getRepository(Session),
-  companyRepo = dataSource.getRepository(Company);
 
 const authService = {
   async register(email: string, password: string, company: string) {
