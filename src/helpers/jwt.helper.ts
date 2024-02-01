@@ -2,11 +2,10 @@ import CryptoJS from "crypto-js";
 import * as jwt from "jsonwebtoken";
 import config from "../config/default.variables.config";
 import { Request } from "express";
-import dataSource from "../config/datasource.config";
 import { Session } from "../entities/session.entity";
 import { JwtPayload } from "../interfaces/jwtPayload.interface";
+import sessionRepo from "../repositories/session.repository";
 
-const sessionRepo = dataSource.getRepository(Session);
 
 const jwtHelper = {
   signJwt: async (id: number, email: string) => {
