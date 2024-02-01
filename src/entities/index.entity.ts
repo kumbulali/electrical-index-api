@@ -21,7 +21,7 @@ export class Index {
   consumption: Consumption;
 
   @CreateDateColumn()
-  cratedAt: Date;
+  createdAt: Date;
 
   @UpdateDateColumn()
   updatedAt: Date;

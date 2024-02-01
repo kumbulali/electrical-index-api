@@ -6,15 +6,14 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   DeleteDateColumn,
-  OneToOne,
   Index,
   JoinColumn,
+  ManyToOne,
 } from "typeorm";
 import * as bcrypt from "bcrypt";
 import { IsEmail } from "class-validator";
 import { Consumption } from "./consumption.entity";
 import { Company } from "./company.entity";
-import { Session } from "./session.entity";
 
 @Entity()
 export class User {
@@ -34,14 +33,15 @@ export class User {
   @Column()
   salt: string;
 
-  @OneToOne((type) => Company)
+  @ManyToOne(() => Company)
+  @JoinColumn()
   company: Company;
 
   @OneToMany(() => Consumption, (consumption) => consumption.user)
   consumptions: Consumption[];
 
   @CreateDateColumn()
-  cratedAt: Date;
+  createdAt: Date;
 
   @UpdateDateColumn()
   updatedAt: Date;
@@ -55,7 +55,7 @@ export class User {
   }
 
   checkPassword(password: string){
-    const passwordMatches = bcrypt.compareSync(password, this.password);
+    const passwordMatches = bcrypt.compareSync(password, this.password);    
     return passwordMatches;
   }
 }

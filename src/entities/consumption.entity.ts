@@ -21,7 +21,7 @@ export class Consumption {
   user: User;
 
   @CreateDateColumn()
-  cratedAt: Date;
+  createdAt: Date;
 
   @UpdateDateColumn()
   updatedAt: Date;

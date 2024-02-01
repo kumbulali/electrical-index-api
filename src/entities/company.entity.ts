@@ -1,5 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany, CreateDateColumn, UpdateDateColumn, DeleteDateColumn } from 'typeorm';
 import { Index } from './index.entity'
+import { User } from './user.entity';
 
 @Entity()
 export class Company {
@@ -13,8 +14,11 @@ export class Company {
   @OneToMany(() => Index, index => index.company)
   indexes: Index[];
 
+  @OneToMany(() => User, user => user.company)
+  users: User[];
+
   @CreateDateColumn()
-  cratedAt: Date;
+  createdAt: Date;
 
   @UpdateDateColumn()
   updatedAt: Date;
