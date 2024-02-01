@@ -4,6 +4,7 @@ import config from "../config/default.variables.config";
 import { Request } from "express";
 import dataSource from "../config/datasource.config";
 import { Session } from "../entities/session.entity";
+import { JwtPayload } from "../interfaces/jwtPayload.interface";
 
 const sessionRepo = dataSource.getRepository(Session);
 
@@ -32,10 +33,10 @@ const jwtHelper = {
     return token;
   },
 
-  getPayloadFromReq: async (req: Request) => {
+  getPayloadFromReq: (req: Request) => {
     const token = <string>req.headers["authorization"];
     const bearerToken = token.slice(7);
-    return jwt.verify(bearerToken, config.jwtSecret);
+    return <JwtPayload>jwt.verify(bearerToken, config.jwtSecret);
   },
 };
 

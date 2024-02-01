@@ -53,4 +53,9 @@ export class User {
     (this.salt = bcrypt.genSaltSync()),
       (this.password = bcrypt.hashSync(password, this.salt));
   }
+
+  checkPassword(password: string){
+    const passwordMatches = bcrypt.compareSync(password, this.password);
+    return passwordMatches;
+  }
 }
