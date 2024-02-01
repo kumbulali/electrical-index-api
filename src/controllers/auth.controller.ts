@@ -14,9 +14,9 @@ const authController = {
       if (error) throw error;
       const user = await authService.register(email, password, company);
       res.send(user);
-    } catch (error) {
+    } catch (err: any) {
       res.status(400).send({
-        message: error,
+        message: err.message,
       });
     }
   },
@@ -29,10 +29,10 @@ const authController = {
       }
       const { email, password } = req.body;
       const user = await authService.login(email, password);
-      res.send(user);
-    } catch (error) {
+      res.status(200).send(user);
+    } catch (err: any) {
       res.status(400).send({
-        message: error,
+        message: err.message,
       });
     }
   },
@@ -44,9 +44,9 @@ const authController = {
       res.status(200).send({
         message: "Successfully logged out.",
       });
-    } catch (error) {
+    } catch (err: any) {
       res.status(400).send({
-        message: error,
+        message: err.message,
       });
     }
   },

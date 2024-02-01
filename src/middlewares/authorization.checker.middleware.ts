@@ -16,7 +16,7 @@ const authorizationCheckerMiddleware = {
                 throw new Error('Unauthorized');
             }
             next();
-        }catch (err){
+        }catch (err: any){
             res.status(401).json({
                 message: 'Unauthorized'
             });

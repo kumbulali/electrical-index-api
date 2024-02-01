@@ -32,10 +32,10 @@ app.use('/api/auth', authRoute);
 
 /** 404 Not Found */
 app.use((req, res, next) => {
-  const error = new Error("Not found");
+  const err = new Error("Not found");
 
   res.status(404).json({
-    message: error.message,
+    message: err.message,
   });
 });
 

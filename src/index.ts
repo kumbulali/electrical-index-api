@@ -7,7 +7,7 @@ dataSource
   .then(() => {
     console.log("Database connection established!");
   })
-  .catch((error: Error) => console.log(error));
+  .catch((err: Error) => console.log(err));
 
 const PORT = config.server.port;
 const HOSTNAME = config.server.hostname;
