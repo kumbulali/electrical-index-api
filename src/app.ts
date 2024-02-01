@@ -4,6 +4,7 @@ import helmet from "helmet";
 import cors from "cors";
 import "reflect-metadata";
 import authRoute from "./routes/auth.route";
+import requestLogger from "./middlewares/request.logger.middleware";
 
 const app = express();
 
@@ -28,9 +29,13 @@ app.use((req, res, next) => {
   next();
 });
 
+/* Request Logging */
+app.use(requestLogger);
+
+/* Routes */
 app.use('/api/auth', authRoute);
 
-/** 404 Not Found */
+/* 404 Not Found */
 app.use((req, res, next) => {
   const err = new Error("Not found");
 
