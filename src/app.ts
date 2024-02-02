@@ -5,6 +5,7 @@ import cors from "cors";
 import "reflect-metadata";
 import authRoute from "./routes/auth.route";
 import requestLogger from "./middlewares/request.logger.middleware";
+import indexRoute from "./routes/index.route";
 
 const app = express();
 
@@ -34,6 +35,7 @@ app.use(requestLogger);
 
 /* Routes */
 app.use('/api/auth', authRoute);
+app.use('/api/index', indexRoute);
 
 /* 404 Not Found */
 app.use((req, res, next) => {
