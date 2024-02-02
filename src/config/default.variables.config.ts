@@ -22,8 +22,7 @@ export const ORM_CONFIG: DataSourceOptions = {
     database: process.env.DB_NAME,
     synchronize: true,
     logging: false,
-    entities: [__dirname + "/../entities/*.entity.{js, ts}"],
-    migrations: [__dirname + "/../migrations/*.migration.{js, ts}"],
+    entities: [__dirname + "/../entities/*.entity.{ts,js}"]
   };
 
 const config = {
