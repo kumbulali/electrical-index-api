@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import jwtHelper from "../helpers/jwt.helper";
-import { JwtPayload } from "../interfaces/jwtPayload.interface";
+import JwtPayload from "../interfaces/jwtPayload.interface";
 import sessionRepo from "../repositories/session.repository";
 
 export default class AuthorizationCheckerMiddleware {
