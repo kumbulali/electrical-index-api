@@ -1,24 +1,27 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany, CreateDateColumn, UpdateDateColumn, DeleteDateColumn } from 'typeorm';
-import { Company } from './company.entity';
-import { Consumption } from './consumption.entity';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  ManyToOne,
+  CreateDateColumn,
+  UpdateDateColumn,
+  DeleteDateColumn,
+} from "typeorm";
+import Company from "./company.entity";
 
 @Entity()
-export class Index {
-
+export default class Index {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
   value: number;
 
-  @Column()
+  @Column({ type: "date", unique: true })
   date: Date;
 
-  @ManyToOne(() => Company, company => company.indexes)
+  @ManyToOne(() => Company, (company) => company.indexes)
   company: Company;
-
-  @OneToMany(() => Consumption, consumption => consumption.index)
-  consumption: Consumption;
 
   @CreateDateColumn()
   createdAt: Date;

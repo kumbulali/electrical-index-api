@@ -3,8 +3,8 @@ import { Request, Response } from "express";
 import authValidation from "../validations/auth.validation";
 import jwtHelper from "../helpers/jwt.helper";
 
-const authController = {
-  register: async (req: Request, res: Response) => {
+export default class AuthController {
+  static register = async (req: Request, res: Response) => {
     try {
       const { error } = authValidation.registerValidationSchema.validate(
         req.body
@@ -18,9 +18,9 @@ const authController = {
         message: err.message,
       });
     }
-  },
+  };
 
-  login: async (req: Request, res: Response) => {
+  static login = async (req: Request, res: Response) => {
     try {
       const { error } = authValidation.loginValidationSchema.validate(req.body);
       if (error) {
@@ -34,9 +34,9 @@ const authController = {
         message: err.message,
       });
     }
-  },
+  };
 
-  logout: async (req: Request, res: Response) => {
+  static logout = async (req: Request, res: Response) => {
     try {
       const jwtPayload = jwtHelper.getPayloadFromReq(req);      
       await authService.logout(jwtPayload);
@@ -48,7 +48,5 @@ const authController = {
         message: err.message,
       });
     }
-  },
+  };
 };
-
-export default authController;

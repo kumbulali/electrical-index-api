@@ -1,22 +1,19 @@
 import {
-  Entity,
-  PrimaryGeneratedColumn,
   Column,
-  OneToMany,
   CreateDateColumn,
-  UpdateDateColumn,
   DeleteDateColumn,
+  Entity,
   Index,
   JoinColumn,
   ManyToOne,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
 } from "typeorm";
 import * as bcrypt from "bcrypt";
-import { IsEmail } from "class-validator";
-import { Consumption } from "./consumption.entity";
-import { Company } from "./company.entity";
+import Company from "./company.entity";
 
 @Entity()
-export class User {
+export default class User {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -24,7 +21,6 @@ export class User {
   @Column({
     unique: true,
   })
-  @IsEmail()
   email: string;
 
   @Column()
@@ -36,9 +32,6 @@ export class User {
   @ManyToOne(() => Company)
   @JoinColumn()
   company: Company;
-
-  @OneToMany(() => Consumption, (consumption) => consumption.user)
-  consumptions: Consumption[];
 
   @CreateDateColumn()
   createdAt: Date;
@@ -54,8 +47,8 @@ export class User {
       (this.password = bcrypt.hashSync(password, this.salt));
   }
 
-  checkPassword(password: string){
-    const passwordMatches = bcrypt.compareSync(password, this.password);    
+  checkPassword(password: string) {
+    const passwordMatches = bcrypt.compareSync(password, this.password);
     return passwordMatches;
   }
 }

@@ -1,4 +1,4 @@
-export interface JwtPayload {
+export default interface JwtPayload {
     id: number,
     email: string,
     sessionId: string,

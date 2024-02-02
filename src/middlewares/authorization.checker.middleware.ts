@@ -3,8 +3,8 @@ import jwtHelper from "../helpers/jwt.helper";
 import { JwtPayload } from "../interfaces/jwtPayload.interface";
 import sessionRepo from "../repositories/session.repository";
 
-const authorizationCheckerMiddleware = {
-    checkJwt: async (req: Request, res: Response, next: NextFunction) => {
+export default class AuthorizationCheckerMiddleware {
+    static checkJwt = async (req: Request, res: Response, next: NextFunction) => {
         try{
             const jwtPayload = <JwtPayload>jwtHelper.getPayloadFromReq(req);            
             const userSession = await sessionRepo.findOne({ where: { userId: jwtPayload.id }});
@@ -19,5 +19,3 @@ const authorizationCheckerMiddleware = {
         }
     }
 };
-
-export default authorizationCheckerMiddleware;

@@ -1,9 +1,10 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany, CreateDateColumn, UpdateDateColumn, DeleteDateColumn } from 'typeorm';
-import { Index } from './index.entity'
-import { User } from './user.entity';
+import Index from './index.entity'
+import User from './user.entity';
+import Consumption from './consumption.entity';
 
 @Entity()
-export class Company {
+export default class Company {
 
   @PrimaryGeneratedColumn()
   id: number;
@@ -13,6 +14,9 @@ export class Company {
 
   @OneToMany(() => Index, index => index.company)
   indexes: Index[];
+
+  @OneToMany(() => Consumption, consumption => consumption.company)
+  consumptions: Consumption[];
 
   @OneToMany(() => User, user => user.company)
   users: User[];
