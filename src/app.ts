@@ -6,6 +6,7 @@ import "reflect-metadata";
 import authRoute from "./routes/auth.route";
 import requestLogger from "./middlewares/request.logger.middleware";
 import indexRoute from "./routes/index.route";
+import consumptionRoute from "./routes/consumption.route";
 
 const app = express();
 
@@ -36,6 +37,7 @@ app.use(requestLogger);
 /* Routes */
 app.use('/api/auth', authRoute);
 app.use('/api/index', indexRoute);
+app.use('/api/consumption', consumptionRoute);
 
 /* 404 Not Found */
 app.use((req, res, next) => {
