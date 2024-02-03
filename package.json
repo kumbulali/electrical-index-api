@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon",
     "build": "rm -rf /dist && tsc",
-    "start": "node dist/index.js",
+    "start": "npm run build && node dist/index.js",
     "postinstall": "rm -rf /dist && tsc"
   },
   "keywords": [],
