@@ -107,8 +107,6 @@ export default class IndexService {
 
       foundIndex.value = newValue;
 
-      console.log(neighboringIndexes, foundIndex);
-
       var consumptions: Consumption[] = [];
       if (neighboringIndexes.previousIndex) {
         const previousConsumptions = Index.calculateAverageDailyConsumption(
