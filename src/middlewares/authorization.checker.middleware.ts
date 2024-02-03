@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import jwtHelper from "../helpers/jwt.helper";
-import JwtPayload from "../interfaces/jwtPayload.interface";
 import sessionRepo from "../repositories/session.repository";
+import { JwtPayload } from "jsonwebtoken";
 
 export default class AuthorizationCheckerMiddleware {
     static checkJwt = async (req: Request, res: Response, next: NextFunction) => {

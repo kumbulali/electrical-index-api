@@ -30,9 +30,6 @@ export default class Index {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @DeleteDateColumn()
-  deletedAt: Date;
-
   constructor(value: number, date: Date, company: Company) {
     this.value = value;
     this.date = date;

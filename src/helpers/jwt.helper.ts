@@ -3,8 +3,8 @@ import * as jwt from "jsonwebtoken";
 import config from "../config/default.variables.config";
 import { Request } from "express";
 import Session from "../entities/session.entity";
-import JwtPayload from "../interfaces/jwtPayload.interface";
 import sessionRepo from "../repositories/session.repository";
+import { JwtPayload } from "jsonwebtoken";
 
 
 const jwtHelper = {

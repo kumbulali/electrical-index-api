@@ -3,10 +3,10 @@ import dataSource from "../config/datasource.config";
 import jwtHelper from "../helpers/jwt.helper";
 import User from "../entities/user.entity";
 import Company from "../entities/company.entity";
-import JwtPayload from "../interfaces/jwtPayload.interface";
 import UserRepository from "../repositories/user.repository";
 import sessionRepo from "../repositories/session.repository";
 import companyRepo from "../repositories/company.repository";
+import { JwtPayload } from "jsonwebtoken";
 
 const removeCredentials = (userObject: User) => {
   return _.omit(userObject, ["password", "salt", "deletedAt"]);
