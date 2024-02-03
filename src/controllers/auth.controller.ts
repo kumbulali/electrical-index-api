@@ -9,10 +9,10 @@ export default class AuthController {
       const { error } = authValidation.registerValidationSchema.validate(
         req.body
       );
-      const { email, password, company } = req.body;
       if (error) throw error;
+      const { email, password, company } = req.body;
       const user = await authService.register(email, password, company);
-      res.send(user);
+      res.status(200).send(user);
     } catch (err: any) {
       res.status(400).send({
         message: err.message,

@@ -17,7 +17,7 @@ export default class Consumption {
   @Column()
   value: number;
 
-  @Column({ type: "date", unique: true })
+  @Column({ type: "date" })
   date: Date;
 
   @ManyToOne(() => Company, (company) => company.indexes)

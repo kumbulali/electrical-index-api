@@ -42,9 +42,13 @@ export default class User {
   @DeleteDateColumn()
   deletedAt: Date;
 
+  constructor(email: string) {
+    this.email = email;
+  }
+
   hashPassword(password: string) {
-    (this.salt = bcrypt.genSaltSync()),
-      (this.password = bcrypt.hashSync(password, this.salt));
+    this.salt = bcrypt.genSaltSync();
+    this.password = bcrypt.hashSync(password, this.salt);
   }
 
   checkPassword(password: string) {

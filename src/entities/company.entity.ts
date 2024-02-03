@@ -29,4 +29,8 @@ export default class Company {
 
   @DeleteDateColumn()
   deletedAt: Date;
+
+  constructor(name: string){
+    this.name = name;
+  }
 }

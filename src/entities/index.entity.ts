@@ -18,7 +18,7 @@ export default class Index {
   @Column()
   value: number;
 
-  @Column({ type: "date", unique: true })
+  @Column({ type: "date" })
   date: Date;
 
   @ManyToOne(() => Company, (company) => company.indexes)

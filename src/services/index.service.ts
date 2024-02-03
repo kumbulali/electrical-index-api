@@ -43,7 +43,13 @@ export default class IndexService {
 
   static addIndex = async (date: Date, indexValue: number, userId: number) => {
     try {
-      const reqUser = await UserRepository.findUserByIdWithCompany(userId);
+      const reqUser = await UserRepository.findUserByIdWithCompany(userId),
+        indexExists = await IndexRepository.findOne({ where: { company: reqUser.company, date: date }});
+      
+      if(indexExists){
+        throw new Error("An index with this date already exists.");
+      }
+
       const neighboringIndexes = await IndexRepository.getNeighboringIndexes(
         date,
         reqUser.company
