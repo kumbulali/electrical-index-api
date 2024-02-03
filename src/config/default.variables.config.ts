@@ -18,6 +18,9 @@ export const ORM_CONFIG: DataSourceOptions = {
     url: process.env.DATABASE_URL,
     synchronize: true,
     logging: false,
+    ssl: {
+      rejectUnauthorized: false
+    },
     entities: [__dirname + "/../entities/*.entity.{ts,js}"]
   };
 
