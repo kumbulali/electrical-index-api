@@ -6,8 +6,8 @@ const indexRoute = express.Router();
 
 indexRoute.post('/', [AuthorizationCheckerMiddleware.checkJwt], IndexController.addIndex);
 
-indexRoute.delete('/', [AuthorizationCheckerMiddleware.checkJwt], IndexController.deleteIndexByDate);
+indexRoute.patch('/', [AuthorizationCheckerMiddleware.checkJwt], IndexController.updateIndex);
 
-indexRoute.delete('/:indexId', [AuthorizationCheckerMiddleware.checkJwt], IndexController.deleteIndexById);
+indexRoute.delete('/', [AuthorizationCheckerMiddleware.checkJwt], IndexController.deleteIndex);
 
 export default indexRoute;

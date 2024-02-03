@@ -3,7 +3,7 @@ import dataSource from "../config/datasource.config";
 import Consumption from "../entities/consumption.entity";
 import Company from "../entities/company.entity";
 
-const consumptionRepo = dataSource.getRepository(Consumption).extend({
+const ConsumptionRepository = dataSource.getRepository(Consumption).extend({
   async updateConsumption(consumptionDate: Date, newValue: number) {
     const foundConsumption = await this.findOneOrFail({
       where: { date: consumptionDate },
@@ -36,7 +36,7 @@ const consumptionRepo = dataSource.getRepository(Consumption).extend({
     }
 
     await Promise.all([this.save(updates), this.save(newConsumptions)]);
-  },
+  }
 });
 
-export default consumptionRepo;
+export default ConsumptionRepository;

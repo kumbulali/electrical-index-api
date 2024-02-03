@@ -1,26 +1,20 @@
 import dataSource from "../config/datasource.config";
 import User from "../entities/user.entity";
 
-const userRepo = dataSource.getRepository(User).extend({
+const UserRepository = dataSource.getRepository(User).extend({
   async findUserByIdWithCompany(userId: number) {
-    const user = await this
-    .createQueryBuilder('user')
-    .leftJoinAndSelect('user.company', 'company')
-    .select([
-      'user.id',
-      'user.email',
-      'company.id',
-      'company.name'
-    ])
-    .where('user.id = :id', { id: userId })
-    .getOne();
+    const user = await this.createQueryBuilder("user")
+      .leftJoinAndSelect("user.company", "company")
+      .select(["user.id", "user.email", "company.id", "company.name"])
+      .where("user.id = :id", { id: userId })
+      .getOne();
 
-  if (!user) {
-    throw new Error('User not found');
-  }
+    if (!user) {
+      throw new Error("User not found");
+    }
 
-  return user;
+    return user;
   },
 });
 
-export default userRepo;
+export default UserRepository;

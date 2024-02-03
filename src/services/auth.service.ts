@@ -4,7 +4,7 @@ import jwtHelper from "../helpers/jwt.helper";
 import User from "../entities/user.entity";
 import Company from "../entities/company.entity";
 import JwtPayload from "../interfaces/jwtPayload.interface";
-import userRepo from "../repositories/user.repository";
+import UserRepository from "../repositories/user.repository";
 import sessionRepo from "../repositories/session.repository";
 import companyRepo from "../repositories/company.repository";
 
@@ -44,7 +44,7 @@ export default class AuthService {
   };
 
   static login = async (email: string, password: string) => {
-    const user = await userRepo.createQueryBuilder('user')
+    const user = await UserRepository.createQueryBuilder('user')
     .leftJoin('user.company', 'company')
     .select(['user', 'company.id', 'company.name'])
     .where('user.email = :email', { email: email })
