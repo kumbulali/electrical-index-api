@@ -4,6 +4,10 @@ import AuthorizationCheckerMiddleware from "../middlewares/authorization.checker
 
 const indexRoute = express.Router();
 
+indexRoute.get('/', [AuthorizationCheckerMiddleware.checkJwt], IndexController.getAllIndexes);
+
+indexRoute.get('/:indexDate', [AuthorizationCheckerMiddleware.checkJwt], IndexController.getIndexByDate);
+
 indexRoute.post('/', [AuthorizationCheckerMiddleware.checkJwt], IndexController.addIndex);
 
 indexRoute.patch('/', [AuthorizationCheckerMiddleware.checkJwt], IndexController.updateIndex);

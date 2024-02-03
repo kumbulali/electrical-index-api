@@ -4,6 +4,31 @@ import indexService from "../services/index.service";
 import jwtHelper from "../helpers/jwt.helper";
 
 export default class IndexController {
+  static getAllIndexes = async (req: Request, res: Response) => {
+    try {
+      const { id } = jwtHelper.getPayloadFromReq(req);
+      const index = await indexService.getAllIndexes(id);
+      res.status(200).send(index);
+    } catch (err: any) {
+      res.status(400).send({
+        message: err.message,
+      });
+    }
+  };
+
+  static getIndexByDate = async (req: Request, res: Response) => {
+    try {
+      const { id } = jwtHelper.getPayloadFromReq(req);
+      const { indexDate } = req.params;
+      const index = await indexService.getIndexByDate(new Date(indexDate), id);
+      res.status(200).send(index);
+    } catch (err: any) {
+      res.status(400).send({
+        message: err.message,
+      });
+    }
+  };
+
   static addIndex = async (req: Request, res: Response) => {
     try {
       const { error } = indexValidation.addIndexValidationSchema.validate(

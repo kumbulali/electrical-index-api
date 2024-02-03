@@ -13,6 +13,34 @@ import dataSource from "../config/datasource.config";
 import ConsumptionRepository from "../repositories/consumption.repository";
 
 export default class IndexService {
+  static getAllIndexes = async (userId: number) => {
+    try {
+      const reqUser = await UserRepository.findUserByIdWithCompany(userId);
+      const foundIndexes = await IndexRepository.find({ where: { company: reqUser.company}, order: { date: 'ASC'}});
+      return _.map(foundIndexes, (index) => {
+        return _.omit(index, ["createdAt", "updatedAt"]);
+      })
+    } catch (err: any) {
+      if (err instanceof EntityNotFoundError) {
+        throw new Error("Index not found.");
+      }
+      throw new Error(err.message);
+    }
+  };
+
+  static getIndexByDate = async (date: Date, userId: number) => {
+    try {
+      const reqUser = await UserRepository.findUserByIdWithCompany(userId);
+      const foundIndex = await IndexRepository.findOneOrFail({ where: { date: date, company: reqUser.company}});
+      return _.omit(foundIndex, ["createdAt", "updatedAt"]);
+    } catch (err: any) {
+      if (err instanceof EntityNotFoundError) {
+        throw new Error("Index not found.");
+      }
+      throw new Error(err.message);
+    }
+  };
+
   static addIndex = async (date: Date, indexValue: number, userId: number) => {
     try {
       const reqUser = await UserRepository.findUserByIdWithCompany(userId);
@@ -63,7 +91,7 @@ export default class IndexService {
           return await transactionalEM.getRepository(Index).save(newIndex);
         }
       );
-      return _.omit(savedIndex, ["deletedAt", "createdAt", "updatedAt"]);
+      return _.omit(savedIndex, ["createdAt", "updatedAt"]);
     } catch (err: any) {
       if (
         err instanceof QueryFailedError &&
@@ -131,7 +159,7 @@ export default class IndexService {
           return await transactionalEM.getRepository(Index).save(foundIndex);
         }
       );
-      return _.omit(updatedIndex, ["deletedAt", "createdAt", "updatedAt"]);
+      return _.omit(updatedIndex, ["createdAt", "updatedAt"]);
     } catch (err: any) {
       if (err instanceof EntityNotFoundError) {
         throw new Error("Index not found.");
