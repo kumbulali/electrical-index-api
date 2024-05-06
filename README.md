@@ -1,4 +1,4 @@
-# Project: Apollo
+# Project: Electricity Index API
 # 📁 Collection: Auth 
 
 
